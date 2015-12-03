@@ -1,0 +1,23 @@
+
+div.imn-extension-copiable-results {
+    margin: 25px 0;
+}
+
+div.imn-extension-copiable-results textarea {
+    font-size: 1.3em;
+    font-family: Helvetica,Arial,sans-serif;
+    padding: 5px;
+    width: 95%;
+    display: block;
+    margin: 5 auto;
+    opacity: 0.8;
+}
+
+
+div.imn-extension-copiable-results button {
+    display: block;
+    margin: 0 auto 15px auto;
+    font-size: 1.4em;
+    font-weight: normal;
+    background-color: buttonface;
+}
