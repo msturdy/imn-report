@@ -3,7 +3,7 @@ function addDataToTextarea(data) {
     // check if there is an existing table:
     var dataDivExisting = document.querySelector('div.imn-extension-copiable-results');
     if (dataDivExisting) {
-        dataDivExisting.parent.removeChild(dataDivExisting);
+        dataDivExisting.parentElement.removeChild(dataDivExisting);
     }
 
     var div = document.createElement('div'),
@@ -17,22 +17,18 @@ function addDataToTextarea(data) {
     }
 
     textBox.textContent = reportData;
-    
-    // make it nice and visible
     textBox.rows = data.length + 1;
     textBox.setAttribute('readonly', 'readonly');
-
-    // easier to visualise the data this way
     textBox.setAttribute('wrap', 'off');
 
+    selectAllButton.className = 'imn-extension-select-all';
     selectAllButton.innerText = 'Select All Table Data';
     selectAllButton.addEventListener('click', selectAllText);
 
-    // need this class to style the button and textarea
     div.className = "imn-extension-copiable-results";
-    
     div.appendChild(textBox);
     div.appendChild(selectAllButton);
+
     document.body.insertBefore(div, document.body.children[4]);
 }
 
@@ -41,7 +37,6 @@ function getDataFromTable() {
         rows = tableReport.children,
         tableData = [];
 
-    // table headers
     tableData.push([
         '"Status"',                 '"Recipient"',
         '"Recipient Operator"',     '"Sender"',
@@ -68,8 +63,6 @@ function getDataFromTable() {
             for (var j = 1; j < columns.length; j++) {
 
                 var columnText = '"'+columns[j].innerText+'"';
-                // there are <td>s with newlines in them which will break 
-                // the CSV
                 columnText = columnText.replace('\n', ' ');
                 rowData.push(columnText);
             }
@@ -85,6 +78,7 @@ function selectAllText() {
 
 
 chrome.runtime.onMessage.addListener(function (msg, sender) {
+
     if (msg.text === 'get_table_data') {
         var tableData = getDataFromTable();
         addDataToTextarea(tableData);

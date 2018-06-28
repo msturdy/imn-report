@@ -17,17 +17,12 @@ function getCurrentTabUrl(callback) {
 document.addEventListener('DOMContentLoaded', function() {
 
     getCurrentTabUrl(function(url){
-
-        if (url === "https://imn.syniverse.com/imn/MessageAction.do") {
-
+        if (url === "https://imn.syniverse.com/MessageAction.do") {
             chrome.tabs.sendMessage(tab.id, {text: 'table_data'}, processTableData);
-
             var reportData = window.document.querySelector('table#report');
-
         }
         else {
-            window.alert("IMN tool only runs on IMN pages.")
+            console.log("IMN tool only runs on IMN pages.");
         }
-
     });
 });

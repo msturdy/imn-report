@@ -2,8 +2,8 @@
   "manifest_version": 2,
 
   "name": "Syniverse IMN tool",
-  "description": "Get tabular data from the IMN reports, which are otherwise useless",
-  "version": "1.1",
+  "description": "Get tabular data from the IMN reports, which are otherwise difficult to copy",
+  "version": "1.4",
 
   "browser_action": {
     "default_icon": "assets/icon.png",
@@ -11,7 +11,7 @@
   },
 
   "content_scripts": [{
-     "matches": ["https://imn.syniverse.com/imn/MessageAction.do"],
+     "matches": ["https://imn.syniverse.com/MessageAction.do"],
      "js": ["js/content.js"],
      "css": ["css/content.css"]
    }],
